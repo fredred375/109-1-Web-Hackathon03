@@ -42,7 +42,7 @@ exports.CheckAns = async (req, res) => {
       var score = 0;
       for (let index = 0; index < answers.length; index++) {
         const element = answers[index];
-        if(req.body.params.ans[index] === element.answer)
+        if(req.body.params.ans[answers[index].questionID - 1] === element.answer)
         {
           score++;
         }

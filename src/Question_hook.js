@@ -55,18 +55,18 @@ function Question() {
 
   const getQuestions = () => {
     // TODO : get questions from backend
-    instance.get('/getContents').then(respond => {
-      console.log(respond);
-      if(respond.data.message === 'error')
+    instance.get('/getContents').then(response => {
+      console.log(response);
+      if(response.data.message === 'error')
       {
         console.log('error retrieving contents');
       }
-      else if(respond.data.message === 'success')
+      else if(response.data.message === 'success')
       {
         console.log('success on retrieving contents');
-        setContents(respond.data.contents);
+        setContents(response.data.contents);
       }
-      console.log(respond);
+      console.log(response);
     });
     
   }
@@ -88,11 +88,11 @@ function Question() {
           </div>
 
           <div id="question-title">
-            {complete ? `Your Score ${score}/${contents.length}`:contents[current_question].question}
+            {complete ? `Your Score: ${score}/${contents.length}`:contents[current_question].question}
           </div>
 
           <div id="options">
-            {complete ?  <></> : contents[current_question].options.map((option, index) => (
+            {complete ?  <div></div> : contents[current_question].options.map((option, index) => (
               <div className="each-option">
                 <input 
                   type="radio"
@@ -109,7 +109,7 @@ function Question() {
             ))}
           </div>
           
-          {complete?<></>:<div id="actions" onClick={next}>
+          {complete?<div></div>:<div id="actions" onClick={next}>
             NEXT
           </div>}
         </React.Fragment>
